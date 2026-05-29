@@ -6,16 +6,14 @@ cachetools==4.2.4
 certifi==2021.5.30
 charset-normalizer==2.0.12
 click==8.0.4
-clip @ git+https://github.com/openai/CLIP.git@dcba3cb2e2827b402d2701e7e1c7d9fed8a20ef1
-cloudpickle @ file:///tmp/build/80754af9/cloudpickle_1632508026186/work
-colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+cloudpickle
+colorama
 contextlib2==21.6.0
 coverage==6.2
-cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
+cycler
 cytoolz==0.11.0
 dask==1.1.4
-dataclasses @ file:///home/conda/feedstock_root/build_artifacts/dataclasses_1628958435052/work
-decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
+decorator
 edt==2.3.0
 efficientnet-pytorch==0.7.1
 einops==0.4.1
@@ -29,37 +27,32 @@ google-auth==2.22.0
 google-auth-oauthlib==0.4.6
 graphviz==0.8.4
 grpcio==1.48.2
-h5py @ file:///tmp/build/80754af9/h5py_1593454121459/work
+h5py
 hausdorff==0.2.6
 huggingface-hub==0.4.0
 idna==3.7
-imageio @ file:///tmp/build/80754af9/imageio_1617700267927/work
-imgaug @ file:///home/runner/work/fastconda/fastconda/tmp/conda_build/conda-bld/imgaug_1675304215642/work
+imageio
+imgaug
 importlib-metadata==4.8.3
 importlib-resources==5.4.0
 iniconfig==1.1.1
 iopath==0.1.10
-joblib @ file:///tmp/build/80754af9/joblib_1613502643832/work
-kiwisolver @ file:///tmp/build/80754af9/kiwisolver_1612282412546/work
+joblib
+kiwisolver
 linecache2==1.0.0
 llvmlite==0.36.0
 Markdown==3.3.7
-matplotlib @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-base_1594091701667/work
-MedPy==0.4.0
-mkl-fft==1.2.0
-mkl-random==1.2.0
-mkl-service==2.3.0
+matplotlib
 ml-collections==0.1.1
 munch==4.0.0
-mxnet==1.4.0
 networkx==2.2
-nibabel @ file:///home/conda/feedstock_root/build_artifacts/nibabel_1644264968592/work
+nibabel
 numba==0.53.1
 numpy==1.19.2
 oauthlib==3.2.2
-olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
+olefile
 opencv-python-headless==4.5.4.60
-packaging @ file:///tmp/build/80754af9/packaging_1637314298585/work
+packaging
 pandas==1.1.5
 peewee==3.18.3
 Pillow==8.4.0
@@ -70,13 +63,13 @@ protobuf==4.21.0
 py==1.11.0
 pyasn1==0.5.1
 pyasn1-modules==0.3.0
-pydicom @ file:///home/conda/feedstock_root/build_artifacts/pydicom_1633185052031/work
-pyparsing @ file:///tmp/build/80754af9/pyparsing_1635766073266/work
+pydicom
+pyparsing
 pytest==7.0.1
 pytest-cov==2.12.1
-python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+python-dateutil
 pytz==2021.3
-PyWavelets @ file:///tmp/build/80754af9/pywavelets_1601658315997/work
+PyWavelets
 PyYAML==6.0.1
 quadprog==0.1.11
 regex==2023.8.8
@@ -85,13 +78,13 @@ requests-oauthlib==2.0.0
 rsa==4.9.1
 sacremoses==0.0.53
 scikit-image==0.15.0
-scikit-learn @ file:///tmp/build/80754af9/scikit-learn_1621365798935/work
-scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy_1604304779264/work
-seaborn @ file:///tmp/build/80754af9/seaborn_1629307859561/work
+scikit-learn
+scipy
+seaborn
 segmentation-models-pytorch==0.3.1
-Shapely @ file:///tmp/build/80754af9/shapely_1632813479358/work
+Shapely
 SimpleITK==2.1.1.2
-six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+six
 summary==0.1.0
 tabulate==0.8.10
 tensorboard==2.10.1
@@ -100,25 +93,29 @@ tensorboard-plugin-wit==1.8.1
 tensorboardX==2.6.2.2
 termcolor==1.1.0
 thop==0.1.1.post2209072238
-threadpoolctl @ file:///Users/ktietz/demo/mc3/conda-bld/threadpoolctl_1629802263681/work
+threadpoolctl
 timm==0.4.12
 tokenizers==0.12.1
 toml==0.10.2
 tomli==1.2.3
-toolz @ file:///tmp/build/80754af9/toolz_1636545406491/work
+toolz
 torch==1.8.0
-torchaudio==0.8.0a0+a751e1d
 torchsummary==1.5.1
 torchvision==0.9.0
-tornado @ file:///tmp/build/80754af9/tornado_1606942266872/work
-tqdm @ file:///opt/conda/conda-bld/tqdm_1647339053476/work
+tornado
+tqdm
 traceback2==1.4.0
 transformers==4.18.0
-typing==3.6.6
-typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1644850595256/work
+
 unittest2==1.1.0
 urllib3==1.26.18
 wcwidth==0.2.14
 Werkzeug==2.0.3
 yacs==0.1.8
 zipp==3.6.0
+MedPy==0.4.0
+mkl-fft==1.2.0
+mkl-random==1.2.0
+mkl-service==2.3.0
+
+typing_extensions
