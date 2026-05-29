@@ -259,7 +259,7 @@ def pre_train(args, snapshot_path):
                     model, test_image_list, num_classes=num_classes,
                     patch_size=patch_size, stride_xy=32, stride_z=16,
                     save_result=False, test_save_path=pred_path)
-                dice_val = avg_metric[:, 0].mean()
+                dice_val = float(avg_metric[0])
                 writer.add_scalar('pre/val_dice', dice_val, iter_num)
                 if dice_val > best_dice:
                     best_dice = round(float(dice_val), 4)
@@ -403,7 +403,7 @@ def self_train(args, pre_snapshot_path, snapshot_path):
                     model, test_image_list, num_classes=num_classes,
                     patch_size=patch_size, stride_xy=32, stride_z=16,
                     save_result=False, test_save_path=pred_path)
-                dice_val = avg_metric[:, 0].mean()
+                dice_val = float(avg_metric[0])
                 writer.add_scalar('self/val_dice', dice_val, iter_num)
                 if dice_val > best_dice:
                     best_dice = round(float(dice_val), 4)
