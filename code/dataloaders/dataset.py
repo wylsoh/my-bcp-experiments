@@ -205,12 +205,12 @@ class BaseDataSets(Dataset):
         elif self.split == 'val' and 'ACDC' in base_dir:
             with open(self._base_dir + '/val.list', 'r') as f:
                 self.sample_list = f.readlines()
-            self.sample_list = [item.replace('.h5\n', '') for item in self.sample_list]
+            self.sample_list = [item.replace('.h5', '').replace('\n', '').strip() for item in self.sample_list]
 
         elif self.split == 'val' and 'MM' in base_dir:
             with open(self._base_dir + '/test.list', 'r') as f:
                 self.sample_list = f.readlines()
-            self.sample_list = [item.replace('.h5\n', '') for item in self.sample_list]
+            self.sample_list = [item.replace('.h5', '').replace('\n', '').strip() for item in self.sample_list]
 
         if num is not None and self.split == "train":
             self.sample_list = self.sample_list[:num]
