@@ -1,0 +1,41 @@
+# ==============================================================================
+# BCP Experiments — Python 依赖
+# ==============================================================================
+# 安装方式:
+#   pip install -r requirements.txt
+# ==============================================================================
+
+# ---------- PyTorch (CUDA 12.1) ----------
+# 实际安装请根据 CUDA 版本选择合适的命令:
+#   pip install torch==2.1.0+cu121 torchvision==0.16.0+cu121 --index-url https://download.pytorch.org/whl/cu121
+torch>=2.0.0
+torchvision>=0.15.0
+
+# ---------- 医学图像处理 ----------
+SimpleITK>=2.0.0
+nibabel>=3.0.0
+MedPy>=0.4.0
+h5py>=3.0.0
+scikit-image>=0.19.0
+batchgenerators>=0.23
+opencv-python>=4.5.0
+
+# ---------- 科学计算 ----------
+numpy>=1.20.0,<2.0.0          # 2.x 与 PyTorch 不兼容
+scipy>=1.7.0
+scikit-learn>=1.0.0
+pandas>=1.3.0
+
+# ---------- 可视化 ----------
+matplotlib>=3.5.0
+tensorboardX>=2.5.0
+tensorboard>=2.9.0
+
+# ---------- 深度学习工具 ----------
+einops>=0.6.0,<0.7.0          # 0.7+ 与 PyTorch 2.1 有兼容问题
+timm>=0.6.0
+
+# ---------- 训练辅助 ----------
+tqdm>=4.60.0
+natsort>=7.0.0
+thop>=0.1.0                   # FLOPs 计算（可选）
