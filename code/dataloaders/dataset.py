@@ -23,8 +23,8 @@ from torch.distributions.beta import Beta
 from torchvision.transforms import functional as F
 from skimage import transform as sk_trans
 import pdb
-# import augmentations
-# from augmentations.ctaugment import OPS
+import augmentations
+from augmentations.ctaugment import OPS
 
 
 # =========================================================================
@@ -135,7 +135,7 @@ class BaseDataSetsWithIndex(Dataset):
         if self.split == 'train' and 'ACDC' in base_dir:
             with open(self._base_dir + '/train_slices.list', 'r') as f1:
                 self.sample_list = f1.readlines()
-            self.sample_list = [item.replace('\n', '') for item in self.sample_list]
+            self.sample_list = [item.replace('.h5', '').replace('\n', '').strip() for item in self.sample_list]
             if label_type == 1:
                 self.sample_list = self.sample_list[:index]
             else:
@@ -153,7 +153,7 @@ class BaseDataSetsWithIndex(Dataset):
         elif self.split == 'val':
             with open(self._base_dir + '/val.list', 'r') as f:
                 self.sample_list = f.readlines()
-            self.sample_list = [item.replace('\n', '') for item in self.sample_list]
+            self.sample_list = [item.replace('.h5', '').replace('\n', '').strip() for item in self.sample_list]
 
         if num is not None and self.split == "train":
             self.sample_list = self.sample_list[:num - index]
@@ -195,7 +195,7 @@ class BaseDataSets(Dataset):
         if self.split == 'train' and 'ACDC' in base_dir:
             with open(self._base_dir + '/train_slices.list', 'r') as f1:
                 self.sample_list = f1.readlines()
-            self.sample_list = [item.replace('\n', '') for item in self.sample_list]
+            self.sample_list = [item.replace('.h5', '').replace('\n', '').strip() for item in self.sample_list]
 
         elif self.split == 'train' and 'MM' in base_dir:
             with open(self._base_dir + '/train_slice.list', 'r') as f1:
@@ -271,7 +271,7 @@ class LAHeart(Dataset):
     def __getitem__(self, idx):
         image_name = self.image_list[idx]
         h5f = h5py.File(
-            self._base_dir + "/data/" + image_name + "/mri_norm2.h5", 'r')
+            self._base_dir + "/2018LA_Seg_Training Set/" + image_name + "/mri_norm2.h5", 'r')
         image = h5f['image'][:]
         label = h5f['label'][:]
         sample = {'image': image, 'label': label}
