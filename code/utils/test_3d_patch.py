@@ -195,15 +195,15 @@ def test_single_case(model, image, stride_xy, stride_z, patch_size, num_classes=
                 with torch.no_grad():
                     y1, _ = model(test_patch)
                     y = F.softmax(y1, dim=1)
-                y = y.cpu().data.numpy()[0, 1, :, :, :]
-                score_map[:, xs:xs+patch_size[0],
-                             ys:ys+patch_size[1],
-                             zs:zs+patch_size[2]] += y
-                cnt[xs:xs+patch_size[0],
-                    ys:ys+patch_size[1],
-                    zs:zs+patch_size[2]] += 1
-    score_map = score_map / np.expand_dims(cnt, axis=0)
-    label_map = (score_map[0] > 0.5).astype(np.int)
+                    y = y.cpu().data.numpy()[0, :, :, :, :]  # [C,D,H,W]，保留所有通道
+                    score_map[:, xs:xs+patch_size[0],
+                                 ys:ys+patch_size[1],
+                                 zs:zs+patch_size[2]] += y
+                    cnt[xs:xs+patch_size[0],
+                        ys:ys+patch_size[1],
+                        zs:zs+patch_size[2]] += 1
+        score_map = score_map / np.expand_dims(cnt, axis=0)
+        label_map = np.argmax(score_map, axis=0).astype(np.int)  # 多分类 argmax
     if add_pad:
         label_map = label_map[wl_pad:wl_pad+w, hl_pad:hl_pad+h, dl_pad:dl_pad+d]
         score_map = score_map[:, wl_pad:wl_pad+w, hl_pad:hl_pad+h, dl_pad:dl_pad+d]
@@ -248,7 +248,7 @@ def test_single_case_plus(model_l, model_r, image, stride_xy, stride_z,
                     y1_r, _ = model_r(test_patch)
                     y1 = (y1_l + y1_r) / 2
                     y = F.softmax(y1, dim=1)
-                y = y.cpu().data.numpy()[0, 1, :, :, :]
+                y = y.cpu().data.numpy()[0, :, :, :, :]  # [C,D,H,W]，保留所有通道
                 score_map[:, xs:xs+patch_size[0],
                              ys:ys+patch_size[1],
                              zs:zs+patch_size[2]] += y
@@ -256,7 +256,7 @@ def test_single_case_plus(model_l, model_r, image, stride_xy, stride_z,
                     ys:ys+patch_size[1],
                     zs:zs+patch_size[2]] += 1
     score_map = score_map / np.expand_dims(cnt, axis=0)
-    label_map = (score_map[0] > 0.5).astype(np.int)
+    label_map = np.argmax(score_map, axis=0).astype(np.int)  # 多分类 argmax
     if add_pad:
         label_map = label_map[wl_pad:wl_pad+w, hl_pad:hl_pad+h, dl_pad:dl_pad+d]
         score_map = score_map[:, wl_pad:wl_pad+w, hl_pad:hl_pad+h, dl_pad:dl_pad+d]

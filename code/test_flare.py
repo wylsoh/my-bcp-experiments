@@ -6,7 +6,7 @@ from networks.net_factory import net_factory
 from utils.test_3d_patch import test_all_case
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path',   type=str,  default='../data_split/flare', help='数据集根目录')
+parser.add_argument('--root_path',   type=str,  default='../data_split/flare/data', help='数据集根目录')
 parser.add_argument('--exp',         type=str,  default='BCP_CMC_v1_mutual',   help='实验名')
 parser.add_argument('--model',       type=str,  default='VNet',                help='模型名')
 parser.add_argument('--gpu',         type=str,  default='0',                   help='GPU编号')
