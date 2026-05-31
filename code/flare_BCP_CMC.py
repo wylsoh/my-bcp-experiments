@@ -37,7 +37,7 @@ from utils.BCP_utils import context_mask, mix_loss, update_ema_variables
 # 参数
 # ================================================================
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path',   type=str,   default='../data_split/flare/data',
+parser.add_argument('--root_path',   type=str,   default='../data_split/flare',
                     help='Flare 数据集根目录')
 parser.add_argument('--exp',         type=str,   default='BCP_CMC_v1_mutual')
 parser.add_argument('--model',       type=str,   default='VNet')
