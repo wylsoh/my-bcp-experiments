@@ -18,7 +18,6 @@ BCP + CMC v1-Freq：频域互补视图
 
 注意：此方案不使用网格掩码，两视图是连续空间分布的，
 与网格类方案（v1/classbal/attention）有本质区别。
-无 cmc_patch_size / cmc_init_shared 参数。
 """
 import argparse, logging, os, random, shutil, sys
 import numpy as np
@@ -61,6 +60,8 @@ parser.add_argument('--cmc_warmup_iter',        type=int,   default=5000)
 parser.add_argument('--cmc_loss_weight',        type=float, default=1.0)
 parser.add_argument('--cmc_mutual_weight',      type=float, default=0.5)
 parser.add_argument('--cmc_mutual_conf_thresh', type=float, default=0.75)
+parser.add_argument('--cmc_patch_size', type=int, default=16,
+                    help='网格大小（此脚本中未使用，仅保持接口兼容）')
 parser.add_argument('--conf_thresh_init',       type=float, default=0.90)
 parser.add_argument('--conf_thresh_final',      type=float, default=0.70)
 # ---------- 频域专用参数 ----------

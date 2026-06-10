@@ -1,0 +1,24 @@
+============================================================
+  剩余实验智能调度流水线
+  开始时间: Tue Jun  9 10:08:58 PM UTC 2026
+============================================================
+
+===== 剩余实验队列 (5个) =====
+  [1] BCP_CMC_v1_ablation_cmc_only_ps8
+  [2] BCP_CMC_v1_asymmetric_ps8
+  [3] BCP_CMC_v1_attention_ps8
+  [4] BCP_CMC_v1_classbal_ps8
+  [5] BCP_CMC_v1_freq_ps8
+===================================
+
+
+============================================================
+  [1/5] 等待GPU: BCP_CMC_v1_ablation_cmc_only_ps8
+============================================================
+⏳ 等待空闲GPU (有效空闲 >5000MB)...
+/home/hjj/ssq/my-bcp-experiments/code/run_pipeline_remaining.sh: line 87: [:   GPU 0: 实际空闲=7767MB, 有效=1767MB (有我方进程)
+  GPU 1: 实际空闲=2686MB, 有效=0MB (有我方进程)
+  GPU 2: 实际空闲=5216MB, 有效=0MB (有我方进程)
+  GPU 3: 实际空闲=2406MB, 有效=0MB (有我方进程)
+-1: integer expression expected
+⏳ 所有GPU忙碌, 15分钟后重试... (Tue Jun  9 10:08:59 PM UTC 2026)

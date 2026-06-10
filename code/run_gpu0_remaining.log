@@ -1,0 +1,68 @@
+============================================================
+  GPU 0 剩余实验接力启动
+  开始时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================
+
+============================================================
+  [1/5] 启动: BCP_CMC_v1_ablation_cmc_only
+  exp: BCP_CMC_v1_ablation_cmc_only_ps8
+  开始时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================
+
+/home/hjj/anaconda3/envs/yll/bin/python: can't open file 'BCP_CMC_v1_ablation_cmc_only': [Errno 2] No such file or directory
+
+  [1/5] 完成: BCP_CMC_v1_ablation_cmc_only_ps8 (exit=0)
+  完成时间: Tue Jun  9 09:00:17 PM UTC 2026
+
+
+============================================================
+  [2/5] 启动: BCP_CMC_v1_asymmetric
+  exp: BCP_CMC_v1_asymmetric_ps8
+  开始时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================
+
+/home/hjj/anaconda3/envs/yll/bin/python: can't open file 'BCP_CMC_v1_asymmetric': [Errno 2] No such file or directory
+
+  [2/5] 完成: BCP_CMC_v1_asymmetric_ps8 (exit=0)
+  完成时间: Tue Jun  9 09:00:17 PM UTC 2026
+
+
+============================================================
+  [3/5] 启动: BCP_CMC_v1_attention
+  exp: BCP_CMC_v1_attention_ps8
+  开始时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================
+
+/home/hjj/anaconda3/envs/yll/bin/python: can't open file 'BCP_CMC_v1_attention': [Errno 2] No such file or directory
+
+  [3/5] 完成: BCP_CMC_v1_attention_ps8 (exit=0)
+  完成时间: Tue Jun  9 09:00:17 PM UTC 2026
+
+
+============================================================
+  [4/5] 启动: BCP_CMC_v1_classbal
+  exp: BCP_CMC_v1_classbal_ps8
+  开始时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================
+
+/home/hjj/anaconda3/envs/yll/bin/python: can't open file 'BCP_CMC_v1_classbal': [Errno 2] No such file or directory
+
+  [4/5] 完成: BCP_CMC_v1_classbal_ps8 (exit=0)
+  完成时间: Tue Jun  9 09:00:17 PM UTC 2026
+
+
+============================================================
+  [5/5] 启动: BCP_CMC_v1_freq
+  exp: BCP_CMC_v1_freq_ps8
+  开始时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================
+
+/home/hjj/anaconda3/envs/yll/bin/python: can't open file 'BCP_CMC_v1_freq': [Errno 2] No such file or directory
+
+  [5/5] 完成: BCP_CMC_v1_freq_ps8 (exit=0)
+  完成时间: Tue Jun  9 09:00:17 PM UTC 2026
+
+
+============================================================
+  所有剩余实验已完成! 完成时间: Tue Jun  9 09:00:17 PM UTC 2026
+============================================================

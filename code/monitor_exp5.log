@@ -1,0 +1,80 @@
+Tue Jun  9 01:27:34 PM UTC 2026 - 开始监控实验5 (mw=1.0)
+Tue Jun  9 01:27:34 PM UTC 2026 - 检查间隔: 600s, 自动测试: y
+
+Tue Jun  9 01:27:34 PM UTC 2026 - 当前 iteration: 3358
+Tue Jun  9 01:27:34 PM UTC 2026 - ▶️ Pretrain 阶段
+Tue Jun  9 01:37:34 PM UTC 2026 - 当前 iteration: 7349
+Tue Jun  9 01:37:34 PM UTC 2026 - ▶️ Pretrain 阶段
+Tue Jun  9 01:47:34 PM UTC 2026 - 当前 iteration: 312
+Tue Jun  9 01:47:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 01:57:34 PM UTC 2026 - 当前 iteration: 1265
+Tue Jun  9 01:57:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 02:07:34 PM UTC 2026 - 当前 iteration: 2200
+Tue Jun  9 02:07:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 02:17:34 PM UTC 2026 - 当前 iteration: 3113
+Tue Jun  9 02:17:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 02:27:34 PM UTC 2026 - 当前 iteration: 4046
+Tue Jun  9 02:27:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 02:37:34 PM UTC 2026 - 当前 iteration: 4999
+Tue Jun  9 02:37:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 02:47:34 PM UTC 2026 - 当前 iteration: 5909
+Tue Jun  9 02:47:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 02:57:34 PM UTC 2026 - 当前 iteration: 6866
+Tue Jun  9 02:57:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 03:07:34 PM UTC 2026 - 当前 iteration: 7772
+Tue Jun  9 03:07:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 03:17:34 PM UTC 2026 - 当前 iteration: 8727
+Tue Jun  9 03:17:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 03:27:34 PM UTC 2026 - 当前 iteration: 9627
+Tue Jun  9 03:27:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 03:37:34 PM UTC 2026 - 当前 iteration: 10577
+Tue Jun  9 03:37:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 03:47:34 PM UTC 2026 - 当前 iteration: 11445
+Tue Jun  9 03:47:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 03:57:34 PM UTC 2026 - 当前 iteration: 12374
+Tue Jun  9 03:57:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 04:07:34 PM UTC 2026 - 当前 iteration: 13293
+Tue Jun  9 04:07:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 04:17:34 PM UTC 2026 - 当前 iteration: 14150
+Tue Jun  9 04:17:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 04:27:34 PM UTC 2026 - 当前 iteration: 15023
+Tue Jun  9 04:27:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 04:37:34 PM UTC 2026 - 当前 iteration: 15853
+Tue Jun  9 04:37:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 04:47:34 PM UTC 2026 - 当前 iteration: 16702
+Tue Jun  9 04:47:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 04:57:34 PM UTC 2026 - 当前 iteration: 17583
+Tue Jun  9 04:57:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 05:07:34 PM UTC 2026 - 当前 iteration: 18473
+Tue Jun  9 05:07:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 05:17:34 PM UTC 2026 - 当前 iteration: 19367
+Tue Jun  9 05:17:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 05:27:34 PM UTC 2026 - 当前 iteration: 20234
+Tue Jun  9 05:27:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 05:37:34 PM UTC 2026 - 当前 iteration: 21111
+Tue Jun  9 05:37:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 05:47:34 PM UTC 2026 - 当前 iteration: 21959
+Tue Jun  9 05:47:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 05:57:34 PM UTC 2026 - 当前 iteration: 22828
+Tue Jun  9 05:57:34 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 06:07:35 PM UTC 2026 - 当前 iteration: 23693
+Tue Jun  9 06:07:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 06:17:35 PM UTC 2026 - 当前 iteration: 24520
+Tue Jun  9 06:17:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 06:27:35 PM UTC 2026 - 当前 iteration: 25319
+Tue Jun  9 06:27:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 06:37:35 PM UTC 2026 - 当前 iteration: 26160
+Tue Jun  9 06:37:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 06:47:35 PM UTC 2026 - 当前 iteration: 26963
+Tue Jun  9 06:47:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 06:57:35 PM UTC 2026 - 当前 iteration: 27859
+Tue Jun  9 06:57:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 07:07:35 PM UTC 2026 - 当前 iteration: 28644
+Tue Jun  9 07:07:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 07:17:35 PM UTC 2026 - 当前 iteration: 29447
+Tue Jun  9 07:17:35 PM UTC 2026 - ▶️ Self-train 阶段
+Tue Jun  9 07:27:35 PM UTC 2026 - 当前 iteration: 30000
+Tue Jun  9 07:27:35 PM UTC 2026 - ✅ 训练完成! mean_dice : 0.887672
+Tue Jun  9 07:27:35 PM UTC 2026 - 🚀 开始运行 test_ACDC.py (exp=BCP_CMC_v1_mutual_mw10)
+Tue Jun  9 07:27:36 PM UTC 2026 - ✅ 测试完成!
+Tue Jun  9 07:27:36 PM UTC 2026 - 🎉 监控结束
