@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# NA_v2 最优结果扩展实验队列
+# NA_v2 最优结果扩展实验队列（标准 batch_size=24）
 #
 # 实验列表：
 #   1. ACDC label3 NA_v2_s0.3 (soft_mask, σ=0.3, ps=8)
@@ -9,17 +9,25 @@
 #   4. Pancreas label6 (10%) NA_v2_s0.3
 #   5. Pancreas label12 (20%) NA_v2_s0.3
 #
-# 注意：NA_v3 剩余实验由 queue_NA_v3_remaining.sh (PID 26094) 管理
+# batch_size 说明：
+#   - ACDC (2D, UNet):        --batch_size 24 --labeled_bs 12 (标准)
+#   - LA (3D, VNet, 112³):    3D 卷积内存密集，bs=24 会 OOM → 保持 bs=8
+#   - Pancreas (3D, VNet, 96³): 3D 数据更密集，bs=24 会 OOM → 保持 bs=2
+#
+# NA_v3 剩余实验改用 queue_NA_v3_remaining_b24.sh
 # ============================================================
 PY=/home/hjj/anaconda3/envs/yll/bin/python
 BASE_DIR="/home/hjj/ssq/my-bcp-experiments/code"
 cd "$BASE_DIR" || exit
 LOG="queue_na_v2_extended.log"
 
+# 必须有 15GB 以上空闲才认为可用（ACDC batch_size=24 需 ~23GB）
+MIN_FREE_MB=15000
+
 find_free_gpu() {
     for gpu in 0 1 2 3; do
         local free=$(nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits -i $gpu | tr -d ' ')
-        [ -n "$free" ] && [ "$free" -ge 4000 ] && echo "$gpu" && return 0
+        [ -n "$free" ] && [ "$free" -ge $MIN_FREE_MB ] && echo "$gpu" && return 0
     done
     echo "" && return 1
 }
@@ -29,7 +37,7 @@ echo "NA_v2 扩展实验 Queue 启动: $(date)" | tee -a "$LOG"
 echo "============================================" | tee -a "$LOG"
 
 # ============================================================
-# 1. ACDC label3 NA_v2_s0.3
+# 1. ACDC label3 NA_v2_s0.3（batch_size=24）
 # ============================================================
 EXP1_NAME="BCP_CMC_NA_v2_s0.3_label3"
 if [ -f "$BASE_DIR/model/BCP/ACDC_${EXP1_NAME}_3_labeled/self_train/unet_best_model.pth" ]; then
@@ -50,8 +58,8 @@ else
         --labelnum 3 \
         --pre_iterations 6000 \
         --max_iterations 30000 \
-        --batch_size 12 \
-        --labeled_bs 6 \
+        --batch_size 24 \
+        --labeled_bs 12 \
         > run_${EXP1_NAME}.log 2>&1 &"
     echo "[$(date)] 启动: $EXP1_NAME on GPU $gpu" | tee -a "$LOG"
     eval "$CMD"
@@ -61,6 +69,7 @@ fi
 
 # ============================================================
 # 2. LA label8 NA_v2_s0.3
+#   注意：3D VNet + trilinear 内存密集，只能 bs=8
 # ============================================================
 EXP2_NAME="BCP_CMC_NA_v2_s0.3"
 if [ -f "$BASE_DIR/model/BCP/LA_${EXP2_NAME}_8_labeled/self_train/VNet_best_model.pth" ]; then
@@ -92,7 +101,7 @@ else
 fi
 
 # ============================================================
-# 3. LA label4 NA_v2_s0.3
+# 3. LA label4 NA_v2_s0.3（bs=8，同上）
 # ============================================================
 if [ -f "$BASE_DIR/model/BCP/LA_${EXP2_NAME}_4_labeled/self_train/VNet_best_model.pth" ]; then
     echo "[$(date)] SKIP: LA label4 $EXP2_NAME - 已完成" | tee -a "$LOG"
@@ -124,6 +133,7 @@ fi
 
 # ============================================================
 # 4. Pancreas label6 (10%) NA_v2_s0.3
+#   注意：3D VNet + 96³ crops，只能 bs=2
 # ============================================================
 PANCREAS_DIR="/home/hjj/ssq/BCP_original/code/pancreas"
 if [ -d "$PANCREAS_DIR/result/cutmix_bcp_cmc_na_v2/10percent/self_train" ] && \
@@ -153,6 +163,7 @@ fi
 
 # ============================================================
 # 5. Pancreas label12 (20%) NA_v2_s0.3
+#   注意：3D VNet + 96³ crops，只能 bs=2
 # ============================================================
 if [ -d "$PANCREAS_DIR/result/cutmix_bcp_cmc_na_v2/20percent/self_train" ] && \
    [ -f "$PANCREAS_DIR/result/cutmix_bcp_cmc_na_v2/20percent/self_train/best_ema20_self.pth" ]; then

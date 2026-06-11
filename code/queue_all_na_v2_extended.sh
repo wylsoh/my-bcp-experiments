@@ -1,21 +1,29 @@
 #!/bin/bash
 # ============================================================
 # Comprehensive Queue: NA_v2_soft_mask 最优结果扩展实验
-# 
+#
 # 包含实验（按优先级排列）：
-#   1-3: NA_v3_w1.5_t1.0 / w3.0_t1.0 / w1.5_t2.0 (来自现有队列)
+#   1-3: NA_v3_w1.5_t1.0 / w3.0_t1.0 / w1.5_t2.0
 #   4:   ACDC label3 NA_v2_s0.3
 #   5-6: LA label8 / label4 NA_v2_s0.3
 #   7-8: Pancreas label6 / label12 NA_v2_s0.3
+#
+# batch_size 说明：
+#   - ACDC 2D (UNet):             --batch_size 24 --labeled_bs 12 （标准）
+#   - LA 3D (VNet, patch 112³):   3D 卷积密集 → bs=8 （bs=24 必 OOM）
+#   - Pancreas 3D (VNet, 96³):    3D 数据更密集 → bs=2 （bs=24 必 OOM）
 # ============================================================
 PY=/home/hjj/anaconda3/envs/yll/bin/python
 cd /home/hjj/ssq/my-bcp-experiments/code || exit
 LOG="queue_all_na_v2_extended.log"
 
+# 必须有 15GB 以上空闲才认为可用（ACDC batch_size=24 需 ~23GB）
+MIN_FREE_MB=15000
+
 find_free_gpu() {
     for gpu in 0 1 2 3; do
         local free=$(nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits -i $gpu | tr -d ' ')
-        [ -n "$free" ] && [ "$free" -ge 4000 ] && echo "$gpu" && return 0
+        [ -n "$free" ] && [ "$free" -ge $MIN_FREE_MB ] && echo "$gpu" && return 0
     done
     echo "" && return 1
 }
@@ -25,30 +33,24 @@ find_free_gpu() {
 # ============================================================
 declare -a QUEUE
 
-# --- NA_v3 剩余实验（同原队列） ---
-QUEUE+=("BCP_CMC_v1_NA_v3_border_loss.py BCP_CMC_NA_v3_w1.5_t1.0_ps8 --cmc_border_loss_weight 1.5 --cmc_border_kl_temp 1.0 --batch_size 12 --labeled_bs 6")
-QUEUE+=("BCP_CMC_v1_NA_v3_border_loss.py BCP_CMC_NA_v3_w3.0_t1.0_ps8 --cmc_border_loss_weight 3.0 --cmc_border_kl_temp 1.0 --batch_size 12 --labeled_bs 6")
-QUEUE+=("BCP_CMC_v1_NA_v3_border_loss.py BCP_CMC_NA_v3_w1.5_t2.0_ps8 --cmc_border_loss_weight 1.5 --cmc_border_kl_temp 2.0 --batch_size 12 --labeled_bs 6")
+# --- NA_v3 剩余实验（标准 batch_size=24） ---
+# w1.5_t1.0 已在 01:56 UTC 以 bs=12 启动运行，不重复加入
+QUEUE+=("BCP_CMC_v1_NA_v3_border_loss.py BCP_CMC_NA_v3_w3.0_t1.0_ps8 --cmc_border_loss_weight 3.0 --cmc_border_kl_temp 1.0 --batch_size 24 --labeled_bs 12")
+QUEUE+=("BCP_CMC_v1_NA_v3_border_loss.py BCP_CMC_NA_v3_w1.5_t2.0_ps8 --cmc_border_loss_weight 1.5 --cmc_border_kl_temp 2.0 --batch_size 24 --labeled_bs 12")
 
-# --- ACDC label3 NA_v2_s0.3 ---
-# 用已有 pretrain (ACDC_BCP_CMC_NA_v2_s0.3_ps8_7_labeled/pre_train) 无法直接复用，
-# 因为 label3 的数据划分不同。需要从头预训练。
-QUEUE+=("BCP_CMC_v1_NA_v2_soft_mask.py BCP_CMC_NA_v2_s0.3_label3 --cmc_patch_size 8 --cmc_soft_sigma 0.3 --cmc_mutual_weight 0.5 --batch_size 12 --labeled_bs 6 --labelnum 3 --pre_iterations 6000 --max_iterations 30000")
+# --- ACDC label3 NA_v2_s0.3（batch_size=24） ---
+QUEUE+=("BCP_CMC_v1_NA_v2_soft_mask.py BCP_CMC_NA_v2_s0.3_label3 --cmc_patch_size 8 --cmc_soft_sigma 0.3 --cmc_mutual_weight 0.5 --batch_size 24 --labeled_bs 12 --labelnum 3 --pre_iterations 6000 --max_iterations 30000")
 
-# --- LA label8 NA_v2_s0.3 ---
-# LA 需要 3D 版本脚本，位于 my-bcp-experiments/code/ 下
+# --- LA label8 NA_v2_s0.3（3D VNet → bs=8） ---
 QUEUE+=("LA_BCP_CMC_NA_v2_soft_mask.py BCP_CMC_NA_v2_s0.3 --cmc_patch_size 16 --cmc_soft_sigma 0.3 --cmc_mutual_weight 0.5 --batch_size 8 --labeled_bs 4 --labelnum 8 --pre_max_iteration 2000 --self_max_iteration 15000 --max_samples 80")
 
-# --- LA label4 NA_v2_s0.3 ---
+# --- LA label4 NA_v2_s0.3（3D VNet → bs=8） ---
 QUEUE+=("LA_BCP_CMC_NA_v2_soft_mask.py BCP_CMC_NA_v2_s0.3 --cmc_patch_size 16 --cmc_soft_sigma 0.3 --cmc_mutual_weight 0.5 --batch_size 8 --labeled_bs 4 --labelnum 4 --pre_max_iteration 2000 --self_max_iteration 15000 --max_samples 80")
 
-# --- Pancreas label6 (10%) NA_v2_s0.3 ---
-# Pancreas 使用 epoch 制训练，在 BCP_original/code/pancreas/ 下运行
-# label6 = 10percent (6 labeled out of 62 total)
+# --- Pancreas label6 (10%) NA_v2_s0.3（3D VNet → bs=2） ---
 QUEUE+=("pancreas/train_pancreas_bcp_cmc_na_v2.py pancreas_6 --cmc_patch_size 16 --cmc_soft_sigma 0.3 --cmc_mutual_weight 0.5 --label_percent 10 --batch_size 2 --lr 1e-3 --skip_pretrain")
 
-# --- Pancreas label12 (20%) NA_v2_s0.3 ---
-# label12 = 20percent (12 labeled out of 62 total)
+# --- Pancreas label12 (20%) NA_v2_s0.3（3D VNet → bs=2） ---
 QUEUE+=("pancreas/train_pancreas_bcp_cmc_na_v2.py pancreas_12 --cmc_patch_size 16 --cmc_soft_sigma 0.3 --cmc_mutual_weight 0.5 --label_percent 20 --batch_size 2 --lr 1e-3 --skip_pretrain")
 
 echo "============================================" | tee -a "$LOG"

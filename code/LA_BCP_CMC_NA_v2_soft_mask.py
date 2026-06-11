@@ -35,6 +35,7 @@ from torch.utils.data import DataLoader
 
 from utils import losses, ramps, test_3d_patch
 from dataloaders.dataset import *
+import torch.nn.functional as F  # 必须在 dataset import * 之后，防止 F 被 torchvision.transforms.functional 覆盖
 from networks.net_factory import net_factory
 from utils.BCP_utils import context_mask, mix_loss, update_ema_variables
 
@@ -341,6 +342,13 @@ def pre_train(args, snapshot_path):
                     save_net_opt(model, optimizer, save_mode_path)
                     save_net_opt(model, optimizer, save_best_path)
                     logging.info("save best model to {}".format(save_mode_path))
+
+        # 最后迭代也保存一份（冒烟测试小轮次时确保有模型可用）
+        if iter_num == pre_max_iterations:
+            final_best_path = os.path.join(snapshot_path,
+                '{}_best_model.pth'.format(args.model))
+            save_net_opt(model, optimizer, final_best_path)
+            logging.info("save final model to {}".format(final_best_path))
                 writer.add_scalar('4_Var_dice/Dice',      dice_sample, iter_num)
                 writer.add_scalar('4_Var_dice/Best_dice', best_dice,   iter_num)
                 model.train()
