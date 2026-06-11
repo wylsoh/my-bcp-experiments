@@ -15,6 +15,7 @@ from tqdm import tqdm
 from networks.net_factory import net_factory
 
 parser = argparse.ArgumentParser()
+parser.add_argument('--gpu', type=str, default='0', help='GPU to use')
 parser.add_argument('--root_path', type=str, default='../data_split/ACDC', help='Name of Experiment')
 parser.add_argument('--exp', type=str, default='BCP', help='experiment_name')
 parser.add_argument('--model', type=str, default='unet', help='model_name')
@@ -73,13 +74,14 @@ def test_single_volume(case, net, test_save_path, FLAGS):
     prd_itk.SetSpacing((1, 1, 10))
     lab_itk = sitk.GetImageFromArray(label.astype(np.float32))
     lab_itk.SetSpacing((1, 1, 10))
-    # sitk.WriteImage(prd_itk, test_save_path + case + "_pred.nii.gz")
-    # sitk.WriteImage(img_itk, test_save_path + case + "_img.nii.gz")
-    # sitk.WriteImage(lab_itk, test_save_path + case + "_gt.nii.gz")
+    sitk.WriteImage(prd_itk, test_save_path + case + "_pred.nii.gz")
+    sitk.WriteImage(img_itk, test_save_path + case + "_img.nii.gz")
+    sitk.WriteImage(lab_itk, test_save_path + case + "_gt.nii.gz")
     return first_metric, second_metric, third_metric
 
 
 def Inference(FLAGS):
+    os.environ['CUDA_VISIBLE_DEVICES'] = FLAGS.gpu
     with open(FLAGS.root_path + '/test.list', 'r') as f:
         image_list = f.readlines()
     image_list = sorted([item.replace('\n', '').split(".")[0] for item in image_list])
