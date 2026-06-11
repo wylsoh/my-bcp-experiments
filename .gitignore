@@ -7,6 +7,9 @@ __pycache__/
 # Model checkpoints and outputs
 model/
 models/
+code/model_backups/
+code/best_results/*.pth
+code/best_results/*.pth.tar
 
 # Training logs
 logs/
