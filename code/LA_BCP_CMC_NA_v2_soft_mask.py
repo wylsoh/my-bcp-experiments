@@ -342,6 +342,9 @@ def pre_train(args, snapshot_path):
                     save_net_opt(model, optimizer, save_mode_path)
                     save_net_opt(model, optimizer, save_best_path)
                     logging.info("save best model to {}".format(save_mode_path))
+                writer.add_scalar('4_Var_dice/Dice',      dice_sample, iter_num)
+                writer.add_scalar('4_Var_dice/Best_dice', best_dice,   iter_num)
+                model.train()
 
         # 最后迭代也保存一份（冒烟测试小轮次时确保有模型可用）
         if iter_num == pre_max_iterations:
@@ -349,9 +352,6 @@ def pre_train(args, snapshot_path):
                 '{}_best_model.pth'.format(args.model))
             save_net_opt(model, optimizer, final_best_path)
             logging.info("save final model to {}".format(final_best_path))
-                writer.add_scalar('4_Var_dice/Dice',      dice_sample, iter_num)
-                writer.add_scalar('4_Var_dice/Best_dice', best_dice,   iter_num)
-                model.train()
 
             if iter_num >= pre_max_iterations:
                 break
