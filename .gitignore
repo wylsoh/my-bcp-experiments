@@ -10,6 +10,12 @@ models/
 
 # Training logs
 logs/
+code/*.log
+code/*.nohup
+code/*.out
+
+# Archived experiment logs
+code/archive_logs/
 
 # Data files (h5 binary data, not list files)
 data_split/**/*.h5
