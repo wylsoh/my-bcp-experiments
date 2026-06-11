@@ -11,6 +11,9 @@ code/model_backups/
 code/best_results/*.pth
 code/best_results/*.pth.tar
 
+# Pancreas experiment results
+05.30/code/pancreas/result/
+
 # Training logs
 logs/
 code/*.log
