@@ -64,7 +64,7 @@ parser.add_argument('--mask_ratio', type=float, default=2/3)
 parser.add_argument('--u_alpha', type=float, default=2.0)
 parser.add_argument('--loss_weight', type=float, default=0.5)
 # ---------- CMC 参数 ----------
-parser.add_argument('--cmc_patch_size',        type=int,   default=16)
+parser.add_argument('--cmc_patch_size',        type=int,   default=8)
 parser.add_argument('--cmc_warmup_iter',       type=int,   default=2000)
 parser.add_argument('--cmc_init_shared',       type=float, default=0.4)
 parser.add_argument('--cmc_loss_weight',       type=float, default=1.0)
@@ -142,7 +142,7 @@ def get_current_consistency_weight(epoch):
 # ================================================================
 # NA-CMC V2 3D 核心函数
 # ================================================================
-def generate_cmc_masks_3d_soft(img, cmc_patch_size=16, shared_ratio=0.0, soft_sigma=0.3):
+def generate_cmc_masks_3d_soft(img, cmc_patch_size=8, shared_ratio=0.0, soft_sigma=0.3):
     """
     3D NA-CMC V2：软权重掩码
 
